@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
-var markdown = require('markdown').markdown,
-    argv = require('yargs').argv;
+var rs = require('robotskirt'),
+    argv = require('yargs').argv,
+    parser = new rs.Markdown(new rs.HtmlRenderer());
+
+console.log(parser.render('~~this is a test~~'));
 
 var Large = {
   folder : {
