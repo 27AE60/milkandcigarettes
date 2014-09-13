@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 
-var rs = require('robotskirt'),
-    argv = require('yargs').argv,
-    parser = new rs.Markdown(new rs.HtmlRenderer());
+var namp = require('namp'),
+    argv = require('yargs').argv;
 
-console.log(parser.render('~~this is a test~~'));
+console.log(namp('~~this is a test~~'));
 
 var Large = {
   folder : {
