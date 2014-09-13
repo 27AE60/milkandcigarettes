@@ -138,3 +138,7 @@ del{
 .bio{
 	margin: 60px 0 30px 0;
 }
+.about{
+	text-decoration: none;
+	color: #000000;
+}
