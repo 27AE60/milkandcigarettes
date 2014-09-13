@@ -1,52 +1,100 @@
 body{
-	padding:20px;
-	margin:auto;
- 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
- 	font-size: 16px;
- 	width:100%;
+	padding:0;
+	margin:0;
+	border: 0;
+ 	font-family: georgia, sans-serif; 
+ 	font-size: 20px;
+ 	line-height: 1.7;
+ 	text-align: left;
 }
 
-.borderBottom{
-	border-bottom: 1px solid grey;
-	width: 15%;
-	margin-left: 35%;
-	margin-bottom: 50px;
-	margin-top: 50px;
-}
-.article-textalign{
-	text-align: left;
-}
-.article-marginbottom{
-	margin-bottom: 50px;
-}
-
-.article__Title{
+h1{
 	font-size: 2em;
-	font-weight: bold;
-	max-width: 60%;
+	font-weight: 100;
 	text-align: center;
-	margin-left: 100px;
-	margin-top: 50px;
+	font-style: italic;
+	margin-top: 70px;
 	margin-bottom: 50px;
 }
 
-.article__middle{
-	float: right;
-	width: 30%;
-	margin-top: 15px;
-	margin-right: 35px;
-	border-bottom: 1px solid grey;
+p{
+	margin: 0;
+	padding: 0;
+	margin-bottom: 35px;
 }
-.article__bottom{
-	margin-top: 50px;
+img{
+	width: 100%;
 }
-@media screen {
-  body{
-    width: 100%;
-    position: relative;
-    padding: 25px 25px 25px 40px;
-    max-width: 750px;
-    margin: auto;
-    background: white;
-  }
+blockquote{
+	font-style: italic;
+	font-size: 28px;
+	text-align: center;
+	padding: 20px;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+	border-color: #E1E1E1;
+	margin-bottom: 40px;
+}
+blockquote:before,blockquote:after{
+	content: "\"";
+}
+.logo{
+	width: 128px;
+	height: 128px;
+	margin: auto;
+	display: block;
+	margin: 40px auto;
+}
+.wrapper{
+	margin: auto;
+	width: 700px;
+}
+.so{
+	text-align: center;
+	background-color: #000000 ;
+	color: #ffffff;
+	border-radius: 128px;
+	text-transform: uppercase;
+	width: auto;
+	display: table;
+	margin: auto;
+	width: 128px;
+	height: 100px;
+	font-size: 45px;
+	padding-top: 28px;
+	margin-top: 60px;
+}
+
+.yourslovingly{
+	text-align: center;
+	font-size: 33px;
+	font-weight: 100;
+	font-style: italic;
+	margin: 0px;
+	margin-top: 40px;
+}
+
+.author{
+	text-align: center;
+	font-size: 50px;
+	font-weight: 100;
+	font-style: italic;
+	margin: 0px;
+	line-height: 0.7;
+	margin-bottom: 100px;
+}
+.footer{
+	margin-bottom: 100px;
+}
+.poweredby{
+	display: block;
+	margin: 0px;
+	text-transform: uppercase;
+	font-size: 11px;
+	letter-spacing: 1px;
+	text-align: center;
+}
+.R27AE60{
+	font-size: 16px;
+	color: #27AE60;
 }
