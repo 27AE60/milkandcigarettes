@@ -47,7 +47,13 @@ blockquote:before,blockquote:after{
 }
 .wrapper{
 	margin: auto;
-	width: 700px;
+	width: 100%;
+	padding: 2%;
+}
+@media only screen and (min-width: 768px){
+	.wrapper{
+		width: 700px;
+	}
 }
 .so{
 	text-align: center;
