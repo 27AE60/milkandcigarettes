@@ -47,7 +47,7 @@ blockquote:before,blockquote:after{
 }
 .wrapper{
 	margin: auto;
-	width: 100%;
+	width: 96%;
 	padding: 2%;
 }
 @media only screen and (min-width: 768px){
