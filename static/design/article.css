@@ -131,3 +131,10 @@ blockquote:before,blockquote:after{
 	text-transform: uppercase;
 	letter-spacing: 1px;
 }
+
+del{
+	font-style: italic;
+}
+.bio{
+	margin: 60px 0 30px 0;
+}
