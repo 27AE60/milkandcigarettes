@@ -16,5 +16,8 @@
     "url": "git@heroku.com:milkandcigarettes.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "markdown": "^0.5.0"
+  }
 }
