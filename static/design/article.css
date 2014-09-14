@@ -117,3 +117,28 @@ blockquote:before,blockquote:after{
 	font-size: 16px;
 	color: #27AE60;
 }
+.forcecentre{
+	text-align: center;
+}
+.backbutton{
+	top: 0;
+	position: absolute;
+	text-decoration: none;
+	color: #ffffff;
+	background-color: #27AE60;
+	padding: 3px 5px 3px 15px;
+	font-size: 15px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+del{
+	font-style: italic;
+}
+.bio{
+	margin: 60px 0 30px 0;
+}
+.about{
+	text-decoration: none;
+	color: #000000;
+}
