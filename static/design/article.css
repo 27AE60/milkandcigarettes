@@ -80,7 +80,7 @@ blockquote:before,blockquote:after{
 	height: 100px;
 	font-size: 45px;
 	padding-top: 28px;
-	margin-top: 50px;
+	margin-top: 110px;
 	margin-bottom: 50px;
 }
 
@@ -117,6 +117,7 @@ blockquote:before,blockquote:after{
 	font-size: 16px;
 	color: #27AE60;
 }
+
 .forcecentre{
 	text-align: center;
 }
@@ -141,4 +142,73 @@ del{
 .about{
 	text-decoration: none;
 	color: #000000;
+}
+
+.table-of-contents li {
+  position:relative;
+  overflow:hidden;
+  width:330px;
+}
+
+.short-heading {
+  margin: 0; padding:0;
+  padding: 5px 20px;
+  font-weight: 100;
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  border-color: #E1E1E1;
+  text-align:center;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  width :auto;
+  display: table;
+  margin: auto;
+  margin-bottom: 60px;
+}
+
+.table-of-contents {
+  margin:0; padding:0;
+}
+
+.table-of-contents li {
+  width:100%;
+  margin-bottom:30px;
+}
+
+.table-of-contents li:after {
+  font-family: Times New Roman;
+  font-size: 8px;
+  content:"................................................";
+  text-indent: -1px;
+  display:block;
+  letter-spacing:14px;
+  position:absolute;
+  left:0px;
+  bottom:6px;
+  z-index:-1;
+  font-weight:bold;
+}
+.table-of-contents .table-of-contents-heading {
+  display:inline;
+  background-color:#FFFFFF;
+  padding:5px 5px 5px 0px;
+}
+
+.table-of-contents-heading a {
+  font-style: italic;
+  text-decoration: none;
+  color: #000000;
+}
+
+.table-of-contents .table-of-contents-page-no {
+  float:right;
+  font-weight:bold;
+  padding-left:5px;
+}
+
+.table-of-contents-page-no a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 14px;
 }
