@@ -212,7 +212,9 @@ del{
   color: #000000;
   font-size: 14px;
 }
-
+.pageno{
+  text-align: center;
+}
 .four-not-four {
   text-align: center;
 }
