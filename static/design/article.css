@@ -121,7 +121,7 @@ blockquote:before,blockquote:after{
 .forcecentre{
 	text-align: center;
 }
-.backbutton{
+/*.backbutton{
 	top: 0;
 	position: absolute;
 	text-decoration: none;
@@ -132,7 +132,7 @@ blockquote:before,blockquote:after{
 	text-transform: uppercase;
 	letter-spacing: 1px;
 }
-
+*/
 del{
 	font-style: italic;
 }
