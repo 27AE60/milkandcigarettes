@@ -222,6 +222,11 @@ del{
 .four-not-four {
   text-align: center;
 }
+disqusthread{
+  text-align: center;
+  padding-right: 150px;
+  padding-left: 150px;
+}
 
 .dominos-404 {
   margin:0;
