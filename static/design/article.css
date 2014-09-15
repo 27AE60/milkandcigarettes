@@ -2,7 +2,7 @@ body{
 	padding:0;
 	margin:0;
 	border: 0;
- 	font-family: georgia, sans-serif; 
+ 	font-family: georgia, sans-serif;
  	font-size: 20px;
  	line-height: 1.7;
  	text-align: left;
@@ -39,7 +39,7 @@ blockquote:before,blockquote:after{
 	content: "\"";
 }
 
-.date { 
+.date {
   text-transform: capitalize;
   text-align: center;
   letter-spacing: 1px;
@@ -84,13 +84,17 @@ blockquote:before,blockquote:after{
 	margin-bottom: 50px;
 }
 
-.yourslovingly{
+.yourslovingly, .ghome-signature{
 	text-align: center;
 	font-size: 33px;
 	font-weight: 100;
 	font-style: italic;
 	margin: 0px;
 	margin-top: 40px;
+}
+.ghome-signature{
+  /* prefers normal */
+  font-style: normal;
 }
 
 .author{
@@ -254,11 +258,11 @@ del{
     margin-left: 30px;
     margin-right: 30px;
   }
-  
-  .dominos:first-child, 
+
+  .dominos:first-child,
   .dominos-null:first-child { margin-left:0; }
-  
-  .dominos:last-child, 
+
+  .dominos:last-child,
   .dominos-null:last-child { margin-right:0; }
 
   .dominos-null {
