@@ -81,7 +81,7 @@ blockquote:before,blockquote:after{
 	font-size: 45px;
 	padding-top: 28px;
 	margin-top: 110px;
-	margin-bottom: 50px;
+	margin-bottom: 100px;
 }
 
 .yourslovingly, .ghome-signature{
@@ -107,7 +107,7 @@ blockquote:before,blockquote:after{
 	margin-bottom: 50px;
 }
 .footer{
-	margin-bottom: 100px;
+	margin-bottom: 30px;
 }
 .poweredby{
 	display: block;
@@ -216,8 +216,20 @@ del{
   color: #000000;
   font-size: 14px;
 }
+.pageline{
+  border-bottom: 1px solid #E1E1E1;
+  width: 200px;
+  margin: auto auto 50px;
+  height: 18px;
+  text-align: center;
+}
 .pageno{
   text-align: center;
+  background-color: #FFF;
+  width: auto;
+  display: table;
+  margin: auto;
+  min-width: 25px;
 }
 .four-not-four {
   text-align: center;
