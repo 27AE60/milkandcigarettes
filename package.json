@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "namp": "^0.2.25",
-    "yargs": "^1.3.1"
+    "commander": "^2.3.0",
+    "namp": "^0.2.25"
   }
 }
