@@ -69,7 +69,11 @@ var Large = {
     var that = this;
 
     fs.readFile(this.config.author, function(err, data) {
-      callback.call(that, JSON.parse(data), args)
+      if(err) {
+        throw "Error: issue with author configutation file"
+      }else {
+        callback.call(that, JSON.parse(data), args);
+      }
     });
   },
 
@@ -148,3 +152,5 @@ if(program.init)  {
 }else {
   console.log('\n Forget Something!  Try large -h\n');
 }
+
+exports.Large = Large;

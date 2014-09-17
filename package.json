@@ -18,7 +18,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^1.9.1",
     "commander": "^2.3.0",
-    "namp": "^0.2.25"
+    "mocha": "^1.21.4",
+    "namp": "^0.2.25",
+    "sinon": "^1.10.3"
   }
 }
