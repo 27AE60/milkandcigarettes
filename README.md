@@ -2,6 +2,8 @@
 
 > Its bigger than you think!
 
+![travis badge](https://travis-ci.org/27AE60/milkandcigarettes.svg?branch=dev)
+
 ###Large
 
 > Medium is Medium, But this is Large!!.
