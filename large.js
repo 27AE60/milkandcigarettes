@@ -48,7 +48,6 @@ var Large = {
     this._readMarkdown(filename);
   },
 
-  // TODO: initialize large
   init : function() {
     var that = this;
 
@@ -65,17 +64,43 @@ var Large = {
     });
   },
 
-  _readAuthorConfig : function(args, callback) {
-    var that = this;
-
-    fs.readFile(this.config.author, function(err, data) {
-      if(err) {
-        throw "Error: issue with author configutation file"
-      }else {
-        callback.call(that, JSON.parse(data), args);
-      }
-    });
+  _authorConfigCb : function(err, data) {
+    if(err) {
+      throw "ERROR : reading author conf failed!";
+    }
   },
+
+  _authorConfigIO : function(mode, cb, options)  {
+    var that = this;
+    switch(mode)  {
+      case 'r':
+        fs.readFile(this.config.author, function(err, data) {
+          cb.call(that, err, JSON.parse(data), options)
+        });
+        break;
+
+      case 'w':
+        fs.writeFile(this.config.author, JSON.stringify(data), function(err) {
+          cb.call(that,err)
+          if(err) { throw 'ERROR: reading author configuration'; }
+        });
+
+      default:
+        throw 'ERROR: unkown operation!';
+    }
+  },
+
+  // _readAuthorConfig : function(args, callback) {
+  //   var that = this;
+  //
+  //   fs.readFile(this.config.author, function(err, data) {
+  //     if(err) {
+  //       throw "Error: issue with author configutation file"
+  //     }else {
+  //       callback.call(that, JSON.parse(data), args);
+  //     }
+  //   });
+  // },
 
   _writeAuthorConfig : function(data, callback) {
     callback = callback || function(){};
@@ -108,13 +133,11 @@ var Large = {
             data[key] = value;
           }
         }
-
-        this._writeAuthorConfig(data);
-
         i += 2;
       }
     }
 
+    return data;
   },
 
   me : function(args) {
