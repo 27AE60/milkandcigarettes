@@ -21,6 +21,7 @@
     "chai": "^1.9.1",
     "chai-fs": "^0.1.0",
     "commander": "^2.3.0",
+    "istanbul": "^0.3.2",
     "mocha": "^1.21.4",
     "pretty-print": "^0.4.1",
     "sinon": "^1.10.3"
