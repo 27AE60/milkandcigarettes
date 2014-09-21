@@ -25,7 +25,8 @@ var template = {
 var Large = {
   config : {
     path: [process.cwd(),'.large'].join('/'),
-    author: [process.cwd(),'.large','author.json'].join('/')
+    author: [process.cwd(),'.large','author.json'].join('/'),
+    post: [process.cwd(), '.post'].join('/')
   },
 
   folder : {
@@ -64,6 +65,8 @@ var Large = {
                                { data: template.authorConfig });
         });
       }
+
+      fs.mkdir(that.config.post, function(err)  {});
     });
   },
 

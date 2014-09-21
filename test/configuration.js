@@ -10,7 +10,8 @@ chai.use(require('chai-fs'));
 var paths = {
   configs : {
     self : [process.cwd(), '.large'].join('/'),
-    author : [process.cwd(),'.large','author.json'].join('/')
+    author : [process.cwd(),'.large','author.json'].join('/'),
+    post : [process.cwd(), '.post'].join('/')
   }
 };
 
@@ -53,6 +54,10 @@ describe('Initializing Large', function() {
     it('should have author config json file', function()  {
       expect(paths.configs.author).to.be.a.file().with.json;
     });
+
+    it('should have .post directory', function()  {
+      expect(paths.configs.post).to.be.a.directory();
+    })
   });
 });
 
