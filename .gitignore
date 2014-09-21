@@ -1,6 +1,7 @@
 #unwanted directories
 node_modules
 .large
+.post
 
 # Logs
 logs

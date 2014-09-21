@@ -2,6 +2,7 @@
 
 var fs = require('fs'),
     path = require('path'),
+    events = require('events'),
     prettyPrint = require('pretty-print'),
     program = require('commander');
 
@@ -184,6 +185,7 @@ var Large = {
       catch(msg) { console.log(msg); exit; }
 
       that.author = data;
+      that.channel.emit('onLoadAuthorConfig', that);
     });
   },
 
@@ -206,34 +208,45 @@ var Large = {
           publish_date : ''
         };
 
-    metadata.filename = filename;
-
     article = path.basename(filename, path.extname(filename)).replace(/_/g,' ');
+
+    metadata.filename = filename;
     metadata.article = article;
+    metadata.author = this._getAuthor('name');
     metadata.created_date = new Date();
 
     return metadata;
   },
 
+  _prepareNewArticle : function(that) {
+    var metadata = {},
+        filePath = '';
+
+    metadata = that._getArticleMetaData(that.tmp);
+    filePath = path.join(that.config.post, metadata.filename);
+    fs.writeFile(filePath, function(err) {
+      if(err) { throw 'ERROR: post i/o failed!'; }
+    })
+  },
+
   newArticle : function(args) {
-    console.log('new article : ', args);
-    var filename = '';
+    if(!args || !args.length) {
+      throw "ERROR: article name empty!"
+    }
 
-    filename = this._filenameBuilder(args);
+    this.tmp = this._filenameBuilder(args);
+    this._loadAuthorConfig();
+  },
 
-    console.log(filename);
+  boot : function() {
+    this.channel = new events.EventEmitter();
+
+    this.channel.on('onLoadAuthorConfig', this._prepareNewArticle);
   }
 };
 
+Large.boot();
 program.parse(process.argv);
-
-if(program.test)  {
-  console.log('\n Test env: \n');
-  console.log('program - ', program.args);
-  console.log(' args - ', program.test);
-
-  exit;
-}
 
 if(program.init)  {
   Large.init();
