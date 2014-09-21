@@ -161,14 +161,13 @@ var Large = {
   _filenameBuilder : function(args) {
     var filename = '';
 
-    if(typeof args === 'string')  {
-      filename = args.replace(/\s/g, '_');
-    }else if(Array.isArray(args)) {
-      filename = args.join('_');
-    }else {
+    if(Array.isArray(args)) {
+      args = args.join('_');
+    }else if(args instanceof Object) {
       return null;
     }
 
+    filename = args.toString().replace(/\s/g, '_');
     filename += '.md';
 
     return filename;
@@ -176,6 +175,11 @@ var Large = {
 
   newArticle : function(args) {
     console.log('new article : ', args);
+    var filename = '';
+
+    filename = this._filenameBuilder(args);
+
+    console.log(filename);
   }
 };
 

@@ -180,6 +180,13 @@ describe('File Name Builder', function() {
     assert.equal(large._filenameBuilder(args), truth);
   });
 
+  it('should return basename in snake case string if element of array having spaces', function() {
+    var args = ['this is a test'],
+        truth = 'this_is_a_test.md';
+
+    assert.equal(large._filenameBuilder(args), truth);
+  })
+
   it('should return null if pass and object', function()  {
     assert.isNull(large._filenameBuilder({}));
   });
