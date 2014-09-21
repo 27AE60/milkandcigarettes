@@ -254,3 +254,30 @@ describe('Article Meta Data', function()  {
   });
 
 });
+
+describe('Get Author Details', function() {
+
+  before(function() {
+    large.author = {
+      name : 'jaison',
+      email : 'jaison.justus.lp@gmail.com',
+      signature : 'with love'
+    };
+  });
+
+  it('should return name', function() {
+    assert.equal(large._getAuthor('name'), 'jaison');
+  });
+
+  it('should return email', function() {
+    assert.equal(large._getAuthor('email'), 'jaison.justus.lp@gmail.com');
+  });
+
+  it('should return signature', function() {
+    assert.equal(large._getAuthor('signature'), 'with love');
+  });
+
+  it('should return null for invalid properties', function()  {
+    assert.isNull(large._getAuthor('mail'));
+  });
+});

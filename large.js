@@ -24,6 +24,8 @@ var template = {
 };
 
 var Large = {
+  author : {},
+
   config : {
     path: [process.cwd(),'.large'].join('/'),
     author: [process.cwd(),'.large','author.json'].join('/'),
@@ -71,7 +73,7 @@ var Large = {
     });
   },
 
-  _authorConfigErrorCheck : function(err, data) {
+  _authorConfigErrorCheck : function(err) {
     if(err) {
       throw "ERROR : author conf i/o failed!";
     }
@@ -109,9 +111,6 @@ var Large = {
   },
 
   _parseConfig : function(data, args) {
-    try { this._authorConfigErrorCheck(); }
-    catch(msg) { console.log(msg)}
-
     var argsLength = args.length,
         key = null,
         value = null;
@@ -137,7 +136,7 @@ var Large = {
 
   _printUserProfile : function(err, data)  {
     try{
-      this._authorConfigErrorCheck();
+      this._authorConfigErrorCheck(err);
     }catch(msg) {
       console.log(msg);
     }
@@ -153,7 +152,7 @@ var Large = {
     var that = this;
 
     this._authorConfigIO('r', function(err, data)  {
-      try { this._authorConfigErrorCheck() }
+      try { this._authorConfigErrorCheck(err) }
       catch(msg) { console.log(msg); exit; }
 
       data = this._parseConfig(data, args);
@@ -175,6 +174,25 @@ var Large = {
     filename += '.md';
     filename = filename.toLowerCase();
     return filename;
+  },
+
+  _loadAuthorConfig : function()  {
+    var that = this;
+
+    this._authorConfigIO('r', function(err, data)  {
+      try { this._authorConfigErrorCheck() }
+      catch(msg) { console.log(msg); exit; }
+
+      that.author = data;
+    });
+  },
+
+  _getAuthor : function(prop) {
+    if(this.author.hasOwnProperty(prop))  {
+      return this.author[prop];
+    }else {
+      return null;
+    }
   },
 
   _getArticleMetaData : function(filename)  {
