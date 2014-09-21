@@ -25,7 +25,7 @@ describe('Initializing Large', function() {
     it('should throw error while reading author configuration file', function()  {
       var err = {},
           data = {},
-          errorMsg = 'ERROR : reading author conf failed!';
+          errorMsg = 'ERROR : author conf i/o failed!';
 
       expect(large._authorConfigErrorCheck.bind(err, data)).to.throw(errorMsg);
     });
