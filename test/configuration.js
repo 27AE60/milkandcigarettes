@@ -190,6 +190,13 @@ describe('File Name Builder', function() {
         truth = 'this_is_a_test.md';
 
     assert.equal(large._filenameBuilder(args), truth);
+  });
+
+  it('filename should be lowercase', function() {
+    var args = ['This Is a test'],
+        truth = 'this_is_a_test.md';
+
+    assert.equal(large._filenameBuilder(args), truth);
   })
 
   it('should return null if pass and object', function()  {

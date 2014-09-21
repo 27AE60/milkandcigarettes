@@ -172,7 +172,7 @@ var Large = {
 
     filename = args.toString().replace(/\s/g, '_');
     filename += '.md';
-
+    filename = filename.toLowerCase();
     return filename;
   },
 
