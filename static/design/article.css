@@ -106,6 +106,10 @@ blockquote:before,blockquote:after{
 	line-height: 0.7;
 	margin-bottom: 50px;
 }
+.about{
+	text-decoration: none;
+	color: black;
+}
 .footer{
 	margin-bottom: 30px;
 }

@@ -4,7 +4,7 @@
   "description": "Its bigger than you think",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test"
   },
   "private": true,
   "dependencies": {
@@ -16,5 +16,13 @@
     "url": "git@heroku.com:milkandcigarettes.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "chai-fs": "^0.1.0",
+    "commander": "^2.3.0",
+    "mocha": "^1.21.4",
+    "pretty-print": "^0.4.1",
+    "sinon": "^1.10.3"
+  }
 }
