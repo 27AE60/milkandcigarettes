@@ -203,3 +203,54 @@ describe('File Name Builder', function() {
     assert.isNull(large._filenameBuilder({}));
   });
 });
+
+describe('Article Meta Data', function()  {
+  var filename = 'this_is_a_test.md',
+      metadata = large._getArticleMetaData(filename);
+
+  it('should return object', function() {
+    assert.isObject(metadata);
+  });
+
+  it('return object should have property filename', function()  {
+    assert.property(metadata, 'filename');
+  });
+
+  it('return object should have property created_date', function()  {
+    assert.property(metadata, 'created_date');
+  });
+
+  it('return object should have property article', function()  {
+    assert.property(metadata, 'article');
+  });
+
+  it('return object should have property author', function()  {
+    assert.property(metadata, 'author');
+  });
+
+  it('return object should have property publish_date', function()  {
+    assert.property(metadata, 'publish_date');
+  });
+
+  it('return object should have property modified_date', function()  {
+    assert.property(metadata, 'modified_date');
+  });
+
+  it('value of article should be same', function()  {
+    assert.propertyVal(metadata, 'article', 'this is a test');
+  });
+
+  it('value of filename should be same', function() {
+    assert.propertyVal(metadata, 'filename', 'this_is_a_test.md');
+  });
+
+  it('value of created_date should be correct', function() {
+    var today = new Date(),
+        created_date = new Date(metadata.created_date);
+
+    assert.equal(created_date.getDay(), today.getDay());
+    assert.equal(created_date.getMonth(), today.getMonth());
+    assert.equal(created_date.getYear(), today.getYear());
+  });
+
+});

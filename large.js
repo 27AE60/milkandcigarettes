@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var fs = require('fs'),
+    path = require('path'),
     prettyPrint = require('pretty-print'),
     program = require('commander');
 
@@ -174,6 +175,26 @@ var Large = {
     filename += '.md';
     filename = filename.toLowerCase();
     return filename;
+  },
+
+  _getArticleMetaData : function(filename)  {
+    var article = '',
+        metadata = {
+          filename : '',
+          article : '',
+          author : '',
+          created_date : '',
+          modified_date : '',
+          publish_date : ''
+        };
+
+    metadata.filename = filename;
+
+    article = path.basename(filename, path.extname(filename)).replace(/_/g,' ');
+    metadata.article = article;
+    metadata.created_date = new Date();
+
+    return metadata;
   },
 
   newArticle : function(args) {
