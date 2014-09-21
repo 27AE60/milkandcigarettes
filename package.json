@@ -22,7 +22,6 @@
     "chai-fs": "^0.1.0",
     "commander": "^2.3.0",
     "mocha": "^1.21.4",
-    "namp": "^0.2.25",
     "pretty-print": "^0.4.1",
     "sinon": "^1.10.3"
   }

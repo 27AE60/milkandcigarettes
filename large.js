@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 var fs = require('fs'),
-    namp = require('namp'),
     prettyPrint = require('pretty-print'),
     program = require('commander');
 
