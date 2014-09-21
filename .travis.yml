@@ -5,3 +5,7 @@ node_js:
 
 before_script:
   - npm update -g npm
+
+deploy:
+  provider: heroku
+  api_key: "AVnrk7JtniekBZsXzYTAdYR/iBsSVOxdaliraALMXCCycM7ap5Amu8Y9HOUGkafCWyIRp7g8vg5+rtRltXPBiLKvd2GHHuiOAIYPjU3MrX3qd7uyRBm6UMjtITckoDWdIAuvD6+1ETDEJqJw9Y1ZxzeFVqlmlbfJCJrUD49wWfk="
