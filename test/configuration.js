@@ -206,7 +206,15 @@ describe('File Name Builder', function() {
 
 describe('Article Meta Data', function()  {
   var filename = 'this_is_a_test.md',
-      metadata = large._getArticleMetaData(filename);
+      metadata = {};
+
+  large.author = {
+    name : 'jaison',
+    email : 'jaison.justus.lp@gmail.com',
+    signature : 'with love'
+  };
+
+  metadata = large._getArticleMetaData(filename);
 
   it('should return object', function() {
     assert.isObject(metadata);
@@ -242,6 +250,10 @@ describe('Article Meta Data', function()  {
 
   it('value of filename should be same', function() {
     assert.propertyVal(metadata, 'filename', 'this_is_a_test.md');
+  });
+
+  it('value of author should be same', function() {
+    assert.propertyVal(metadata, 'author', 'jaison');
   });
 
   it('value of created_date should be correct', function() {
