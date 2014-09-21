@@ -161,6 +161,26 @@ describe('Parse Config', function() {
   it('return data should have a signature', function()  {
     expect(large._parseConfig(data, args).signature).to.equal('yours lovingly');
   });
+});
 
+describe('File Name Builder', function() {
+  it('should return string with extname .md', function()  {
+    assert.include(large._filenameBuilder('this_is_a_test'),'.md');
+  });
 
+  it('should return basename snake case string if array is passed', function() {
+    var args = ['this', 'is', 'a', 'test'],
+        truth = 'this_is_a_test.md';
+    assert.equal(large._filenameBuilder(args), truth);
+  });
+
+  it('should return basename snake case string if string with space is passed', function() {
+     var args = 'this is a test',
+        truth = 'this_is_a_test.md';
+    assert.equal(large._filenameBuilder(args), truth);
+  });
+
+  it('should return null if pass and object', function()  {
+    assert.isNull(large._filenameBuilder({}));
+  });
 });

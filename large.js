@@ -155,10 +155,28 @@ var Large = {
       data = this._parseConfig(data, args);
 
       this._authorConfigIO('w', this._authorConfigErrorCheck, { data : data });
-
     });
-
   },
+
+  _filenameBuilder : function(args) {
+    var filename = '';
+
+    if(typeof args === 'string')  {
+      filename = args.replace(/\s/g, '_');
+    }else if(Array.isArray(args)) {
+      filename = args.join('_');
+    }else {
+      return null;
+    }
+
+    filename += '.md';
+
+    return filename;
+  },
+
+  newArticle : function(args) {
+    console.log('new article : ', args);
+  }
 };
 
 program.parse(process.argv);
@@ -181,6 +199,8 @@ if(program.init)  {
   require('child_process').exec('rm -rf .large/', function() {
     console.log('Large is removed :( !');
   });
+}else if(program.new) {
+  Large.newArticle(program.args);
 }
 
 exports.Large = Large;
