@@ -2,6 +2,7 @@
 
 var fs = require('fs'),
     namp = require('namp'),
+    prettyPrint = require('pretty-print'),
     program = require('commander');
 
 program
@@ -33,17 +34,20 @@ var Large = {
     html : ''
   },
 
-  // TODO: read markdown file.
+  printerConfig : {
+    leftPadding: 2,
+    rightPadding: 3
+  },
+
+  _printer : function(obj) {
+    prettyPrint(obj, this.printerConfig);
+  },
+
   _readMarkdown : function(filename)  {
     console.log(this.folder.markdown);
     console.log(filename);
   },
 
-  // TODO: convert it to html.
-  // TODO: embed into the page template.
-  // TODO: create html file in static folder.
-  // TODO: update the home page list.
-  // TODO: publish the article.
   publish : function(filename)  {
     this._readMarkdown(filename);
   },
@@ -56,17 +60,17 @@ var Large = {
         console.log('\n Already Initialized!\n');
       }else {
         fs.mkdir(that.config.path, function()  {
-          that._writeAuthorConfig(template.authorConfig, function()  {
-            console.log('\n Medium is Medium, But this is Large!\n')
-          });
+          that._authorConfigIO('w',
+                               function()  { console.log('\n Medium is Medium, But this is Large!\n'); },
+                               { data: template.authorConfig });
         });
       }
     });
   },
 
-  _authorConfigCb : function(err, data) {
+  _authorConfigErrorCheck : function(err, data) {
     if(err) {
-      throw "ERROR : reading author conf failed!";
+      throw "ERROR : author conf i/o failed!";
     }
   },
 
@@ -75,48 +79,36 @@ var Large = {
     switch(mode)  {
       case 'r':
         fs.readFile(this.config.author, function(err, data) {
-          cb.call(that, err, JSON.parse(data), options)
+          cb.call(that, err, (data) ? JSON.parse(data) : undefined, options)
         });
         break;
 
       case 'w':
-        fs.writeFile(this.config.author, JSON.stringify(data), function(err) {
-          cb.call(that,err)
-          if(err) { throw 'ERROR: reading author configuration'; }
+        fs.writeFile(this.config.author, JSON.stringify(options.data), function(err) {
+            cb.call(that, err)
         });
+        break;
 
       default:
         throw 'ERROR: unkown operation!';
     }
   },
 
-  // _readAuthorConfig : function(args, callback) {
-  //   var that = this;
-  //
-  //   fs.readFile(this.config.author, function(err, data) {
-  //     if(err) {
-  //       throw "Error: issue with author configutation file"
-  //     }else {
-  //       callback.call(that, JSON.parse(data), args);
-  //     }
-  //   });
-  // },
-
-  _writeAuthorConfig : function(data, callback) {
-    callback = callback || function(){};
-    fs.writeFile(this.config.author,JSON.stringify(data),function() {
-      callback();
-    })
-  },
-
   _configurationHelp : function() {
+    var printObj = {
+      name : 'author name',
+      email : 'author email',
+      signature : 'author signature'
+    };
+
     console.log('\n Usage large --config [param] [value]\n');
-    console.log('   name        author name');
-    console.log('   email       author email');
-    console.log('   signature   author signature\n');
+    this._printer(printObj);
   },
 
   _parseConfig : function(data, args) {
+    try { this._authorConfigErrorCheck(); }
+    catch(msg) { console.log(msg)}
+
     var argsLength = args.length,
         key = null,
         value = null;
@@ -140,19 +132,33 @@ var Large = {
     return data;
   },
 
-  me : function(args) {
-    this._readAuthorConfig(args, function(data) {
-      var params = [];
-      for(var attr in data) {
-        params.push(data[attr]);
-      }
-      console.log(params.join(', '))
-    })
+  _printUserProfile : function(err, data)  {
+    try{
+      this._authorConfigErrorCheck();
+    }catch(msg) {
+      console.log(msg);
+    }
+
+    this._printer(data);
+  },
+
+  me : function() {
+    this._authorConfigIO('r', this._printUserProfile);
   },
 
   configuration : function(args) {
     var that = this;
-    this._readAuthorConfig(args, this._parseConfig);
+
+    this._authorConfigIO('r', function(err, data)  {
+      try { this._authorConfigErrorCheck() }
+      catch(msg) { console.log(msg); exit; }
+
+      data = this._parseConfig(data, args);
+
+      this._authorConfigIO('w', this._authorConfigErrorCheck, { data : data });
+
+    });
+
   },
 };
 
@@ -172,8 +178,10 @@ if(program.init)  {
   Large.configuration(program.args);
 }else if(program.me)  {
   Large.me();
-}else {
-  console.log('\n Forget Something!  Try large -h\n');
+}else if(program.flush) {
+  require('child_process').exec('rm -rf .large/', function() {
+    console.log('Large is removed :( !');
+  });
 }
 
 exports.Large = Large;

@@ -14,7 +14,7 @@ var paths = {
   }
 };
 
-describe('Initializing Large - ', function() {
+describe('Initializing Large', function() {
 
   describe('when large is not initialized', function()  {
 
@@ -27,7 +27,7 @@ describe('Initializing Large - ', function() {
           data = {},
           errorMsg = 'ERROR : reading author conf failed!';
 
-      expect(large._authorConfigCb.bind(err, data)).to.throw(errorMsg);
+      expect(large._authorConfigErrorCheck.bind(err, data)).to.throw(errorMsg);
     });
 
   });
@@ -56,7 +56,74 @@ describe('Initializing Large - ', function() {
   });
 });
 
-describe('Parse Config - ', function() {
+
+describe('Author config IO', function() {
+
+  describe('when configuration exists', function()  {
+
+    it('should call callback after reading author config', function() {
+      var cb = function(err, data) {
+        assert.equal(err, null);
+      }
+
+      large._authorConfigIO('r', cb, {});
+    });
+
+    it('should return data as object not as string after reading', function()  {
+      var cb = null;
+
+      cb = function(err, data) {
+        assert.equal(err, null);
+        assert.equal(typeof data, 'object');
+        assert.notEqual(typeof data, 'string');
+      }
+
+      large._authorConfigIO('r', cb, {});
+    });
+
+    it('error will be null if writing is success', function()  {
+      var cb = null;
+
+      cb = function(err, data) {
+        assert.equal(err, null);
+      }
+
+      large._authorConfigIO('w', cb, { data : {} });
+    });
+  });
+
+  describe('when configuration file does not exists', function(done)  {
+    before(function(done) {
+      exec('rm -rf .large', function()  { done(); });
+    });
+
+    it('should pass error while reading author config', function(done) {
+      var cb = function(err, data) {
+        assert.notEqual(err, null);
+        assert.equal(data, undefined);
+        done();
+      }
+
+      large._authorConfigIO('r', cb, {});
+    });
+
+    it('should pass error while writing', function(done)  {
+      var cb = null;
+
+      cb = function(err, data) {
+        assert.notEqual(err, null);
+        done();
+      }
+
+      large._authorConfigIO('w', cb, { data : {} });
+    });
+
+  });
+
+})
+
+
+describe('Parse Config', function() {
   var data = {},
       args = {};
 
@@ -75,12 +142,25 @@ describe('Parse Config - ', function() {
     expect(large._parseConfig(data, args)).to.have.property('name');
   });
 
+  it('return data should have a name', function()  {
+    expect(large._parseConfig(data, args).name).to.equal('jaison');
+  });
+
   it('return data should have property email', function()  {
     expect(large._parseConfig(data, args)).to.have.property('email');
+  });
+
+  it('return data should have a email', function()  {
+    expect(large._parseConfig(data, args).email).to.equal('jaison.justus.lp@gmail.com');
   });
 
   it('return data should have property signature', function()  {
     expect(large._parseConfig(data, args)).to.have.property('signature');
   });
+
+  it('return data should have a signature', function()  {
+    expect(large._parseConfig(data, args).signature).to.equal('yours lovingly');
+  });
+
 
 });
