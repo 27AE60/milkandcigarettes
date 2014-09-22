@@ -223,8 +223,8 @@ var Large = {
         filePath = '';
 
     metadata = that._getArticleMetaData(that.tmp);
-    filePath = path.join(that.config.post, metadata.filename);
-    fs.writeFile(filePath, function(err) {
+    filePath = path.join(that.config.post, metadata.filename.replace('.md', '.json'));
+    fs.writeFile(filePath, JSON.stringify(metadata), function(err) {
       if(err) { throw 'ERROR: post i/o failed!'; }
     })
   },
