@@ -256,7 +256,9 @@ if(program.init)  {
   Large.me();
 }else if(program.flush) {
   require('child_process').exec('rm -rf .large/', function() {
-    console.log('Large is removed :( !');
+    require('child_process').exec('rm -rf .post/', function() {
+      console.log('Large is removed :( !');
+    });
   });
 }else if(program.new) {
   Large.newArticle(program.args);
