@@ -1,17 +1,21 @@
 ##Milk & Cigarettes
 
-> Its bigger than you think!
+Milk & Cigarettes is our Diary. each article is each page in our 
+diary of Friendship. - "Its bigger than you think!"
+
+
+###Large
 
 ![travis badge](https://travis-ci.org/27AE60/milkandcigarettes.svg?branch=dev)
+
 ![dependencies update](https://david-dm.org/27AE60/milkandcigarettes.png)
-###Large
+
 
 > Medium is Medium, But this is Large!!.
 
-Large is our article publishing tool. First write your article as `markdown`
-and save it in `post`. once you finish article run `large --p`.
+Large is our terminal based article publishing tool. Simple create an article as 
+markdown file. write write write once you get bored publish it.
 
-*Astalavista Babe!!*
 
 - To install all deps - `npm install`
 - To publish article - `large --p <file-name>`
