@@ -3,6 +3,7 @@
 var fs = require('fs'),
     path = require('path'),
     events = require('events'),
+    namp = require('namp'),
     prettyPrint = require('pretty-print'),
     program = require('commander');
 
@@ -34,7 +35,7 @@ var Large = {
   },
 
   folder : {
-    markdown : [process.cwd(), 'post/'].join('/'),
+    markdown : [process.cwd(), 'post'].join('/'),
     html : ''
   },
 
@@ -48,8 +49,21 @@ var Large = {
   },
 
   _readMarkdown : function(filename)  {
-    console.log(this.folder.markdown);
-    console.log(filename);
+    var that = this,
+        path = [this.folder.markdown, filename].join('/');
+
+    fs.readFile(path, "utf-8", function(err, data)  {
+      if(err) { throw "ERROR: Article not found"; }
+      that.channel.emit('onReadMarkdown', that, data);
+    });
+  },
+
+  _renderHTML : function(that, md)  {
+    console.log(that._convertMarkdown(md));
+  },
+
+  _convertMarkdown : function(md) {
+    return namp(md, {highlight : true});
   },
 
   publish : function(filename)  {
@@ -240,7 +254,7 @@ var Large = {
 
   boot : function() {
     this.channel = new events.EventEmitter();
-
+    this.channel.on('onReadMarkdown', this._renderHTML);
     this.channel.on('onLoadAuthorConfig', this._prepareNewArticle);
   }
 };
@@ -262,6 +276,10 @@ if(program.init)  {
   });
 }else if(program.new) {
   Large.newArticle(program.args);
+}
+
+if(program.test)  {
+  console.log(Large._readMarkdown('this_is_a_test.md'));
 }
 
 exports.Large = Large;
