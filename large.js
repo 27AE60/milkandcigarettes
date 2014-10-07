@@ -217,6 +217,7 @@ var Large = {
           filename : '',
           article : '',
           author : '',
+          email : '',
           created_date : '',
           modified_date : '',
           publish_date : ''
@@ -227,6 +228,7 @@ var Large = {
     metadata.filename = filename;
     metadata.article = article;
     metadata.author = this._getAuthor('name');
+    metadata.email = this._getAuthor('email');
     metadata.created_date = new Date();
 
     return metadata;
@@ -236,6 +238,11 @@ var Large = {
     var metadata = {},
         filePath = '';
 
+    if(that._getAuthor('name').length <= 0 ||
+       that._getAuthor('email').length <= 0)  {
+      throw 'ERROR: author name is empty';
+    }
+
     metadata = that._getArticleMetaData(that.tmp);
     filePath = path.join(that.config.post, metadata.filename.replace('.md', '.json'));
     fs.writeFile(filePath, JSON.stringify(metadata), function(err) {
@@ -243,13 +250,34 @@ var Large = {
     })
   },
 
-  newArticle : function(args) {
+  articleOperation : function(args) {
     if(!args || !args.length) {
       throw "ERROR: article name empty!"
     }
 
     this.tmp = this._filenameBuilder(args);
-    this._loadAuthorConfig();
+    this._loadAuthorConfig('new');
+  },
+
+  _functionSwitch : function()  {
+    try {
+      switch(this.option.toLowerCase()) {
+        case 'new':
+          this._prepareNewArticle();
+        break;
+        case 'publish':
+          this._publishArticle();
+        break;
+        default:
+          console.log('unknown option :// ');
+      }
+    }catch(msg) {
+      console.log(msg);
+    }
+  },
+
+  _publishArticle : function(args) {
+    console.log('publish Article');
   },
 
   boot : function() {
@@ -274,8 +302,8 @@ if(program.init)  {
       console.log('Large is removed :( !');
     });
   });
-}else if(program.new) {
-  Large.newArticle(program.args);
+}else if(program.new || program.publish) {
+  Large.articleOperation(program.args);
 }
 
 if(program.test)  {
