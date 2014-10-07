@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 var fs = require('fs'),
+    path = require('path'),
+    events = require('events'),
     prettyPrint = require('pretty-print'),
     program = require('commander');
 
@@ -23,9 +25,12 @@ var template = {
 };
 
 var Large = {
+  author : {},
+
   config : {
     path: [process.cwd(),'.large'].join('/'),
-    author: [process.cwd(),'.large','author.json'].join('/')
+    author: [process.cwd(),'.large','author.json'].join('/'),
+    post: [process.cwd(), '.post'].join('/')
   },
 
   folder : {
@@ -64,10 +69,12 @@ var Large = {
                                { data: template.authorConfig });
         });
       }
+
+      fs.mkdir(that.config.post, function(err)  {});
     });
   },
 
-  _authorConfigErrorCheck : function(err, data) {
+  _authorConfigErrorCheck : function(err) {
     if(err) {
       throw "ERROR : author conf i/o failed!";
     }
@@ -105,9 +112,6 @@ var Large = {
   },
 
   _parseConfig : function(data, args) {
-    try { this._authorConfigErrorCheck(); }
-    catch(msg) { console.log(msg)}
-
     var argsLength = args.length,
         key = null,
         value = null;
@@ -133,7 +137,7 @@ var Large = {
 
   _printUserProfile : function(err, data)  {
     try{
-      this._authorConfigErrorCheck();
+      this._authorConfigErrorCheck(err);
     }catch(msg) {
       console.log(msg);
     }
@@ -149,27 +153,100 @@ var Large = {
     var that = this;
 
     this._authorConfigIO('r', function(err, data)  {
-      try { this._authorConfigErrorCheck() }
+      try { this._authorConfigErrorCheck(err) }
       catch(msg) { console.log(msg); exit; }
 
       data = this._parseConfig(data, args);
 
       this._authorConfigIO('w', this._authorConfigErrorCheck, { data : data });
-
     });
-
   },
+
+  _filenameBuilder : function(args) {
+    var filename = '';
+
+    if(Array.isArray(args)) {
+      args = args.join('_');
+    }else if(args instanceof Object) {
+      return null;
+    }
+
+    filename = args.toString().replace(/\s/g, '_');
+    filename += '.md';
+    filename = filename.toLowerCase();
+    return filename;
+  },
+
+  _loadAuthorConfig : function()  {
+    var that = this;
+
+    this._authorConfigIO('r', function(err, data)  {
+      try { this._authorConfigErrorCheck() }
+      catch(msg) { console.log(msg); exit; }
+
+      that.author = data;
+      that.channel.emit('onLoadAuthorConfig', that);
+    });
+  },
+
+  _getAuthor : function(prop) {
+    if(this.author.hasOwnProperty(prop))  {
+      return this.author[prop];
+    }else {
+      return null;
+    }
+  },
+
+  _getArticleMetaData : function(filename)  {
+    var article = '',
+        metadata = {
+          filename : '',
+          article : '',
+          author : '',
+          created_date : '',
+          modified_date : '',
+          publish_date : ''
+        };
+
+    article = path.basename(filename, path.extname(filename)).replace(/_/g,' ');
+
+    metadata.filename = filename;
+    metadata.article = article;
+    metadata.author = this._getAuthor('name');
+    metadata.created_date = new Date();
+
+    return metadata;
+  },
+
+  _prepareNewArticle : function(that) {
+    var metadata = {},
+        filePath = '';
+
+    metadata = that._getArticleMetaData(that.tmp);
+    filePath = path.join(that.config.post, metadata.filename.replace('.md', '.json'));
+    fs.writeFile(filePath, JSON.stringify(metadata), function(err) {
+      if(err) { throw 'ERROR: post i/o failed!'; }
+    })
+  },
+
+  newArticle : function(args) {
+    if(!args || !args.length) {
+      throw "ERROR: article name empty!"
+    }
+
+    this.tmp = this._filenameBuilder(args);
+    this._loadAuthorConfig();
+  },
+
+  boot : function() {
+    this.channel = new events.EventEmitter();
+
+    this.channel.on('onLoadAuthorConfig', this._prepareNewArticle);
+  }
 };
 
+Large.boot();
 program.parse(process.argv);
-
-if(program.test)  {
-  console.log('\n Test env: \n');
-  console.log('program - ', program.args);
-  console.log(' args - ', program.test);
-
-  exit;
-}
 
 if(program.init)  {
   Large.init();
@@ -179,8 +256,12 @@ if(program.init)  {
   Large.me();
 }else if(program.flush) {
   require('child_process').exec('rm -rf .large/', function() {
-    console.log('Large is removed :( !');
+    require('child_process').exec('rm -rf .post/', function() {
+      console.log('Large is removed :( !');
+    });
   });
+}else if(program.new) {
+  Large.newArticle(program.args);
 }
 
 exports.Large = Large;
