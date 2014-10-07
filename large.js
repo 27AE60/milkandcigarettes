@@ -247,6 +247,7 @@ var Large = {
     filePath = path.join(that.config.post, metadata.filename.replace('.md', '.json'));
     fs.writeFile(filePath, JSON.stringify(metadata), function(err) {
       if(err) { throw 'ERROR: post i/o failed!'; }
+      fs.writeFile(path.join(that.folder.markdown, metadata.filename), function() {});
     })
   },
 
@@ -303,6 +304,7 @@ if(program.init)  {
     });
   });
 }else if(program.new || program.publish) {
+  Large.option = (program.new) ? 'new' : 'publish';
   Large.articleOperation(program.args);
 }
 
