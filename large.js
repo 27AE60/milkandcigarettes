@@ -85,6 +85,10 @@ var Large = {
       }
 
       fs.mkdir(that.config.post, function(err)  {});
+
+      fs.exists(that.folder.markdown, function(exists) {
+        if(!exists) { fs.mkdir(that.folder.markdown); }
+      })
     });
   },
 
@@ -247,7 +251,9 @@ var Large = {
     filePath = path.join(that.config.post, metadata.filename.replace('.md', '.json'));
     fs.writeFile(filePath, JSON.stringify(metadata), function(err) {
       if(err) { throw 'ERROR: post i/o failed!'; }
-      fs.writeFile(path.join(that.folder.markdown, metadata.filename), function() {});
+      fs.writeFile(path.join(that.folder.markdown, metadata.filename), function() {
+        console.log('Article is ready');
+      });
     })
   },
 
@@ -278,7 +284,7 @@ var Large = {
   },
 
   _publishArticle : function(args) {
-    console.log('publish Article');
+    console.log('publish Article', args);
   },
 
   boot : function() {
