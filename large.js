@@ -3,6 +3,7 @@
 var fs = require('fs'),
     path = require('path'),
     events = require('events'),
+    promise = require('node-promise').Promise,
     namp = require('namp'),
     prettyPrint = require('pretty-print'),
     program = require('commander');
@@ -233,7 +234,7 @@ var Large = {
     metadata.article = article;
     metadata.author = this._getAuthor('name');
     metadata.email = this._getAuthor('email');
-    metadata.created_date = new Date();
+    metadata.created_date = Date.now();
 
     return metadata;
   },
@@ -263,17 +264,17 @@ var Large = {
     }
 
     this.tmp = this._filenameBuilder(args);
-    this._loadAuthorConfig('new');
+    this._loadAuthorConfig();
   },
 
-  _functionSwitch : function()  {
+  _functionSwitch : function(that)  {
     try {
-      switch(this.option.toLowerCase()) {
+      switch(that.option.toLowerCase()) {
         case 'new':
-          this._prepareNewArticle();
+          that._prepareNewArticle(that);
         break;
         case 'publish':
-          this._publishArticle();
+          that._publishArticle(that);
         break;
         default:
           console.log('unknown option :// ');
@@ -283,14 +284,51 @@ var Large = {
     }
   },
 
-  _publishArticle : function(args) {
-    console.log('publish Article', args);
+  _publishArticle : function(that) {
+    var filename = that.tmp.replace('.md', '.json');
+    filename = path.join(this.config.post, filename);
+
+    that._getArticleConfiguration(filename)
+        .then(function(data)  {
+          that._updateArticleConfiguration(data, filename)
+              .then(function()  {
+                console.log('end');
+              })
+        });
+  },
+
+  _getArticleConfiguration : function(filename) {
+    var p = new promise();
+
+    fs.readFile(filename, function(err, data) {
+      if(err) {
+        throw 'ERROR: article configuration file not found!'
+      }
+      p.resolve(JSON.parse(data));
+    });
+
+    return p;
+  },
+
+  _updateArticleConfiguration : function(data, filename)  {
+    var p = new promise();
+
+    data.publish_date = Date.now();
+    fs.writeFile(filename, JSON.stringify(data), function(err) {
+      if(err) {
+        throw "ERROR: publish date updation failed!"
+      }
+
+      p.resolve();
+    });
+
+    return p;
   },
 
   boot : function() {
     this.channel = new events.EventEmitter();
     this.channel.on('onReadMarkdown', this._renderHTML);
-    this.channel.on('onLoadAuthorConfig', this._prepareNewArticle);
+    this.channel.on('onLoadAuthorConfig', this._functionSwitch);
   }
 };
 
