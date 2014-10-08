@@ -1,6 +1,10 @@
 #!/bin/bash
 
 echo -e '\e[34m\e[1mLarge Dev Toolbelt\e[0m'
+
+echo -e '\e[32m[*] Removing all post\e[0m'
+rm post/* .post/*
+
 echo -e '\e[32m[*] Flushing Large instance\e[0m'
 ./large.js --flush
 
