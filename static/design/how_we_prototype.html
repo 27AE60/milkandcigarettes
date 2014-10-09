@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes"/>
+<link rel="stylesheet" type="text/css" href="article.css">
+</head>
+
+<body>
+<a href="index.html">
+  <img src="milk-and-cigarettes-logo.png" class="logo">
+</a>
+<p class="date">9th October 2014</p>
+<div class="wrapper">
+  <h1>How we prototype?</h1>
+  <blockquote>A prototype is an early sample, model, or release of a product built to test a concept or process or to act as a thing to be replicated or learned from. - wikipedia</blockquote>
+
+  <p>We have a speaker which plays songs while we work. The problem is, everytime if I wanted to play a song of my choice, I had to connect it to my system. Soon, we realized that we actually stumbled upon a problem and then we started building a prototype. The goal of this prototype [<a href="https://github.com/rabishah/BMS-Player">github repo</a>] is to play songs on the server. </p>
+
+  <p>Basically, a prototype serves as a proof of concept. Now that we have a prototype playing songs on the server, we are thinking of extending its functionality to upvoting songs in the playlist, uploading songs on the server and many more.</p>
+
+  <p>We realized the importance of prototype and we want to share our ways of prototyping a concept.</p>
+
+  <h3 id="first-10-and-final-10">First 10% and Final 10%</h3>
+  <p>Your prototype builds its future on how serious you were in initial phase and final phase. </p>
+  <p>This is the optimal time when you 'think of your goal (small one preferably)', brainstorm and finally, add a finishing touch. </p>
+  <ul>
+    <li>Research, research as much as you can. </li>
+    <li>Find an implemented module.
+    <em>Do not even think of implementing everything on your own.</em></li>
+    <li>Better, find out how community is implementing? (e.g. google groups)</li>
+    <li>Github repo, stars, changelog,<br />
+    </li>
+    <li>We need to be clever enough to utilise community experience.</li>
+  </ul>
+  <p>So for our prototype, we wanted a node module which played songs on the command line. We got lucky and found an amazing package 'player' that served our purpose. </p>
+
+  <pre><code>npm install player.</code></pre>
+
+  <p>If you go through the github page of this player (repo), you can see it has a good number of stars, forks and its recently upated too. It encouraged me to use this module.</p>
+
+  <h3 id="bake-it-wrap-it-and-serve-it">Bake it, Wrap it and Serve it</h3>
+  <p>Once you get hold of the modules, you need to sort out functionalities, wrap them in your own module. Finally, create a module  on the basis of functionalities. This module should give flexibility while you code.</p>
+
+  <p>Player module's dissecion</p>
+  <ul>
+    <li>new Player(list)</li>
+    <li>player.on('playing', cb)</li>
+    <li>player.on('playend', cb)</li>
+    <li>player.add(src)</li>
+    <li>player.play()</li>
+    <li>player.stop()</li>
+  </ul>
+
+  <span>So, our wrapper for this is:</span>
+  <pre>
+    <code>
+    function BMSPlayer(playlist) {
+      this.playlist = playlist;
+      this.init();
+    }
+
+    BMSPlayer.prototype = {
+      init : function() {
+        this.player = new Player(this.playlist)
+      },
+
+      play : function() {}
+      },
+
+      ........
+    }
+    </code>
+  </pre>
+
+  <h3 id="start-with-your-trump-card">Start with your Trump Card</h3>
+  <p>The thing is, 'It is a prototype'. So code accordingly. The aim is to get prototype functional as soon as you can. </p>
+  <p>It is always a wise decision to go with what you know the best. </p>
+  <p>We chose, nodejs just for the sake of simplicity.</p>
+
+  <h3 id="think-about-the-apis">Think about the APIs</h3>
+  <p>APIs define functionality of your client.<br />
+  </p>
+  <p>For our project, we wanted all clients connected to the server to get list of songs, current songs being played and so on. Our express route,</p>
+  <pre>
+    <code>
+      /             (render html)
+      /playlist     (list of songs and state)
+      /upvote/:id   (upvote a song)
+    </code>
+  </pre>
+
+  <h3 id="utilities-co">Utilities &amp; co.</h3>
+  <p>You should have your utility functions, like making an xmlhttprequest, a basic express server code, etc. ready with you.</p>
+
+  <h3 id="more-importantly-smile">More importantly, Smile :)</h3>
+  <p>It's your hack, not a misery.</p>
+  <p>These are our overall process, something we feel, can help other 'wanderers' like us.</p>
+</div>
+
+<h3 class="ghome-signature">~(o.o)~</h3>
+<p class="author"><a href="ghome.html" class="about">ghome</a></p>
+<h2 class="so">.so</h2>
+
+<div class="footer">
+  <div class="pageline">
+    <div class="pageno">3</div>
+  </div>
+  <p class="poweredby">Powered By
+  <a class="R27AE60" href="https://github.com/27ae60">27AE60</a></p>
+</div>
+
+</body>
+</html>
