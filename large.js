@@ -3,6 +3,7 @@
 var fs = require('fs'),
     path = require('path'),
     events = require('events'),
+    promise = require('node-promise').Promise,
     namp = require('namp'),
     prettyPrint = require('pretty-print'),
     program = require('commander');
@@ -85,6 +86,10 @@ var Large = {
       }
 
       fs.mkdir(that.config.post, function(err)  {});
+
+      fs.exists(that.folder.markdown, function(exists) {
+        if(!exists) { fs.mkdir(that.folder.markdown); }
+      })
     });
   },
 
@@ -217,6 +222,7 @@ var Large = {
           filename : '',
           article : '',
           author : '',
+          email : '',
           created_date : '',
           modified_date : '',
           publish_date : ''
@@ -227,7 +233,8 @@ var Large = {
     metadata.filename = filename;
     metadata.article = article;
     metadata.author = this._getAuthor('name');
-    metadata.created_date = new Date();
+    metadata.email = this._getAuthor('email');
+    metadata.created_date = Date.now();
 
     return metadata;
   },
@@ -236,14 +243,22 @@ var Large = {
     var metadata = {},
         filePath = '';
 
+    if(that._getAuthor('name').length <= 0 ||
+       that._getAuthor('email').length <= 0)  {
+      throw 'ERROR: author name is empty';
+    }
+
     metadata = that._getArticleMetaData(that.tmp);
     filePath = path.join(that.config.post, metadata.filename.replace('.md', '.json'));
     fs.writeFile(filePath, JSON.stringify(metadata), function(err) {
       if(err) { throw 'ERROR: post i/o failed!'; }
+      fs.writeFile(path.join(that.folder.markdown, metadata.filename), function() {
+        console.log('Article is ready');
+      });
     })
   },
 
-  newArticle : function(args) {
+  articleOperation : function(args) {
     if(!args || !args.length) {
       throw "ERROR: article name empty!"
     }
@@ -252,10 +267,68 @@ var Large = {
     this._loadAuthorConfig();
   },
 
+  _functionSwitch : function(that)  {
+    try {
+      switch(that.option.toLowerCase()) {
+        case 'new':
+          that._prepareNewArticle(that);
+        break;
+        case 'publish':
+          that._publishArticle(that);
+        break;
+        default:
+          console.log('unknown option :// ');
+      }
+    }catch(msg) {
+      console.log(msg);
+    }
+  },
+
+  _publishArticle : function(that) {
+    var filename = that.tmp.replace('.md', '.json');
+    filename = path.join(this.config.post, filename);
+
+    that._getArticleConfiguration(filename)
+        .then(function(data)  {
+          that._updateArticleConfiguration(data, filename)
+              .then(function()  {
+                console.log('end');
+              })
+        });
+  },
+
+  _getArticleConfiguration : function(filename) {
+    var p = new promise();
+
+    fs.readFile(filename, function(err, data) {
+      if(err) {
+        throw 'ERROR: article configuration file not found!'
+      }
+      p.resolve(JSON.parse(data));
+    });
+
+    return p;
+  },
+
+  _updateArticleConfiguration : function(data, filename)  {
+    var p = new promise();
+
+    data.publish_date = Date.now();
+    fs.writeFile(filename, JSON.stringify(data), function(err) {
+      if(err) {
+        throw "ERROR: publish date updation failed!"
+      }
+
+      p.resolve();
+    });
+
+    return p;
+  },
+
   boot : function() {
     this.channel = new events.EventEmitter();
     this.channel.on('onReadMarkdown', this._renderHTML);
-    this.channel.on('onLoadAuthorConfig', this._prepareNewArticle);
+    this.channel.on('onLoadAuthorConfig', this._functionSwitch);
   }
 };
 
@@ -274,8 +347,9 @@ if(program.init)  {
       console.log('Large is removed :( !');
     });
   });
-}else if(program.new) {
-  Large.newArticle(program.args);
+}else if(program.new || program.publish) {
+  Large.option = (program.new) ? 'new' : 'publish';
+  Large.articleOperation(program.args);
 }
 
 if(program.test)  {
