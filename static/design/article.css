@@ -55,6 +55,10 @@ blockquote:before,blockquote:after{
 	display: block;
 	margin: 40px auto;
 }
+.milk-and-cigarettes-logo {
+  display: table;
+  margin: auto;
+}
 .wrapper{
 	margin: auto;
 	width: 96%;

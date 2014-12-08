@@ -31,6 +31,7 @@ body {
   width: 100%;
   margin-bottom:40px;
   background-color: rgba(255,255,255,0.46);
+  text-align: center;
 }
 
 @media screen and (min-width:600px) {
@@ -48,19 +49,17 @@ body {
 h3 {
   font-size:2em;
   margin: 0px;
-  text-align: center;
   padding: 7px;
 }
 
 .charity-address {
   font-size:1.1em;
-  text-align: center;
   padding: 5px 10px;
 }
 .charity-phone {
   margin: 0px;
   margin-top: -43px;
-  text-align:center; 
+  padding-bottom: 14px;
 }
 
 .star-medium {
@@ -92,7 +91,7 @@ h3 {
   width:40px;
   height:324px;
   position:absolute;
-  top:0; 
+  top:0;
   z-index:-1;
   left:20%;
 }
@@ -125,8 +124,8 @@ h3 {
 }
 
 .oscillate {
-  -webkit-transform-origin:50% -40px;  
-  -moz-transform-origin:50% -40px;   
+  -webkit-transform-origin:50% -40px;
+  -moz-transform-origin:50% -40px;
   -webkit-animation: oscillation 1s ease-in-out infinite alternate;
   -moz-animation: oscillation 1s ease-in-out infinite alternate;
   z-index:0;
@@ -152,8 +151,8 @@ h3 {
 }
 
 .oscillate-star-medium {
-  -webkit-transform-origin:50% -40px;  
-  -moz-transform-origin:50% -40px;   
+  -webkit-transform-origin:50% -40px;
+  -moz-transform-origin:50% -40px;
   -webkit-animation: oscillation-star-medium 1s ease-in-out infinite alternate;
   -moz-animation: oscillation-star-medium 1s ease-in-out infinite alternate;
   z-index:0;
@@ -179,8 +178,8 @@ h3 {
 }
 
 .oscillate-star-small {
-  -webkit-transform-origin:50% -40px;  
-  -moz-transform-origin:50% -40px;   
+  -webkit-transform-origin:50% -40px;
+  -moz-transform-origin:50% -40px;
   -webkit-animation: oscillation-star-small 1s ease-in-out infinite alternate;
   -moz-animation: oscillation-star-small 1s ease-in-out infinite alternate;
   z-index:0;
@@ -205,8 +204,8 @@ h3 {
 }
 
 .oscillate-ball-green {
-  -webkit-transform-origin:50% -40px;  
-  -moz-transform-origin:50% -40px;   
+  -webkit-transform-origin:50% -40px;
+  -moz-transform-origin:50% -40px;
   -webkit-animation: oscillation-ball-green 1s ease-in-out infinite alternate;
   -moz-animation: oscillation-ball-green 1s ease-in-out infinite alternate;
   z-index:0;
@@ -230,8 +229,8 @@ h3 {
 }
 
 .oscillate-ball-red {
-  -webkit-transform-origin:50% -40px;  
-  -moz-transform-origin:50% -40px;   
+  -webkit-transform-origin:50% -40px;
+  -moz-transform-origin:50% -40px;
   -webkit-animation: oscillation-ball-red 1s ease-in-out infinite alternate;
   -moz-animation: oscillation-ball-red 1s ease-in-out infinite alternate;
   z-index:0;
@@ -243,4 +242,10 @@ h3 {
 
 .special-wrapper h1 {
   margin:20px 0px 0px 0px !important;
+}
+
+.message {
+  text-align: center;
+  font-size: 1.5em;
+  font-style: italic;
 }
