@@ -10,35 +10,35 @@ body {
 }
 
 @-webkit-keyframes snow {
-    0% { background-position: 0px 0px, 0px 0px, 0px 0px }
-    100% {
-        background-position: 500px 1000px, 400px 400px, 300px 300px;
-    }
+    0% { background-position: 0px 0px; }
+    100% { background-position: 500px 1000px; }
 }
 @-moz-keyframes snow {
-    0% { background-position: 0px 0px, 0px 0px, 0px 0px }
-    100% {
-        background-position: 500px 1000px, 400px 400px, 300px 300px;
-    }
+    0% { background-position: 0px 0px; }
+    100% { background-position: 500px 1000px; }
 }
 @-ms-keyframes snow {
-    0% { background-position: 0px 0px, 0px 0px, 0px 0px }
-    100% {
-        background-position: 500px 1000px, 400px 400px, 300px 300px;
-    }
+    0% { background-position: 0px 0px; }
+    100% { background-position: 500px 1000px; }
 }
 @keyframes snow {
-    0% { background-position: 0px 0px, 0px 0px, 0px 0px }
-    100% {
-        background-position: 500px 1000px, 400px 400px, 300px 300px;
-    }
+    0% { background-position: 0px 0px; }
+    100% { background-position: 500px 1000px; }
 }
 .charity-box {
   border: 1px solid #eeeeee !important;
   border-radius: 3px;
-  margin-left: 15%;
-  margin-right: 15%;
+  width: 100%;
+  margin-bottom:40px;
   background-color: rgba(255,255,255,0.46);
+}
+
+@media screen and (min-width:600px) {
+  .charity-box {
+    width:70%;
+    margin: auto;
+    margin-bottom:40px;
+  }
 }
 
 .charity-box h3{
@@ -235,4 +235,12 @@ h3 {
   -webkit-animation: oscillation-ball-red 1s ease-in-out infinite alternate;
   -moz-animation: oscillation-ball-red 1s ease-in-out infinite alternate;
   z-index:0;
+}
+
+.special-wrapper {
+  padding-bottom:0 !important;
+}
+
+.special-wrapper h1 {
+  margin:20px 0px 0px 0px !important;
 }
