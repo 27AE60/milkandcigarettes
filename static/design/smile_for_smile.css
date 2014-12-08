@@ -1,6 +1,8 @@
 body {
-    background-color: #b4cfe0;
-    background-image: url('http://i.imgur.com/BiSmXaq.png'), url('http://i.imgur.com/XHuy0NJ.png'), url('http://i.imgur.com/okpRxJU.png');
+    margin-top: 305px !important;
+    background-color: #fff;
+    background-image: url('snow-flakes.png');
+    background-size:250px 250px;
     -webkit-animation: snow 20s linear infinite;
     -moz-animation: snow 20s linear infinite;
     -ms-animation: snow 20s linear infinite;
@@ -32,13 +34,17 @@ body {
     }
 }
 .charity-box {
-  border: 1px solid !important;
+  border: 1px solid #eeeeee !important;
   border-radius: 3px;
   margin-left: 15%;
   margin-right: 15%;
-  background-color: #FFF;
+  background-color: rgba(255,255,255,0.46);
 }
 
+.charity-box h3{
+  font-weight:100;
+  font-style:italic;
+}
 h3 {
   font-size:2em;
   margin: 0px;
@@ -58,17 +64,16 @@ h3 {
 }
 
 .star-medium {
-  width:59px;
-  height:437px;
+  width:35px;
   position:absolute;
   top:0;
   z-index:-1;
-  left:85%;
+  left:75%;
 }
 
 .star-small {
-  width:35px;
-  height:260px;
+  width:26px;
+  height:166px;
   position: absolute;
   top:0px;
   z-index:-1;
@@ -76,28 +81,158 @@ h3 {
 }
 
 .angel {
-  width:175px;
-  height:733px;
+  width:80px;
   position:absolute;
-  left: 43%;
+  left: 50%;
+  margin-left:-40px;
   z-index: -1;
-  top: 0;
+  top:-50px;
 }
-
 .ball-green {
-  width:74px;
-  height:666px;
+  width:40px;
+  height:324px;
   position:absolute;
   top:0; 
   z-index:-1;
-  left:10%;
+  left:20%;
 }
 
 .ball-red {
-  width:30px;
-  height:395px;
+  width:20px;
+  height:233px;
   position:absolute;
   top:0;
   z-index:-1;
-  left:30%;
+  left:35%;
+}
+
+@-webkit-keyframes oscillation	{
+  from	{
+    -webkit-transform:rotate(-1deg);
+  }
+  to {
+    -webkit-transform:rotate(1deg);
+  }
+}
+
+@-moz-keyframes oscillation {
+  from {
+    -moz-transform:rotate(-1deg);
+  }
+  to {
+    -moz-transform:rotate(1deg);
+  }
+}
+
+.oscillate {
+  -webkit-transform-origin:50% -40px;  
+  -moz-transform-origin:50% -40px;   
+  -webkit-animation: oscillation 1s ease-in-out infinite alternate;
+  -moz-animation: oscillation 1s ease-in-out infinite alternate;
+  z-index:0;
+}
+
+
+@-webkit-keyframes oscillation-star-medium	{
+  from	{
+    -webkit-transform:rotate(2deg);
+  }
+  to {
+    -webkit-transform:rotate(-2deg);
+  }
+}
+
+@-moz-keyframes oscillation-star-medium {
+  from {
+    -moz-transform:rotate(2deg);
+  }
+  to {
+    -moz-transform:rotate(-2deg);
+  }
+}
+
+.oscillate-star-medium {
+  -webkit-transform-origin:50% -40px;  
+  -moz-transform-origin:50% -40px;   
+  -webkit-animation: oscillation-star-medium 1s ease-in-out infinite alternate;
+  -moz-animation: oscillation-star-medium 1s ease-in-out infinite alternate;
+  z-index:0;
+}
+
+
+@-webkit-keyframes oscillation-star-small	{
+  from	{
+    -webkit-transform:rotate(-3deg);
+  }
+  to {
+    -webkit-transform:rotate(3deg);
+  }
+}
+
+@-moz-keyframes oscillation-star-small {
+  from {
+    -moz-transform:rotate(-3deg);
+  }
+  to {
+    -moz-transform:rotate(3deg);
+  }
+}
+
+.oscillate-star-small {
+  -webkit-transform-origin:50% -40px;  
+  -moz-transform-origin:50% -40px;   
+  -webkit-animation: oscillation-star-small 1s ease-in-out infinite alternate;
+  -moz-animation: oscillation-star-small 1s ease-in-out infinite alternate;
+  z-index:0;
+}
+
+@-webkit-keyframes oscillation-ball-green {
+  from	{
+    -webkit-transform:rotate(-3deg);
+  }
+  to {
+    -webkit-transform:rotate(3deg);
+  }
+}
+
+@-moz-keyframes oscillation-ball-green {
+  from {
+    -moz-transform:rotate(-3deg);
+  }
+  to {
+    -moz-transform:rotate(3deg);
+  }
+}
+
+.oscillate-ball-green {
+  -webkit-transform-origin:50% -40px;  
+  -moz-transform-origin:50% -40px;   
+  -webkit-animation: oscillation-ball-green 1s ease-in-out infinite alternate;
+  -moz-animation: oscillation-ball-green 1s ease-in-out infinite alternate;
+  z-index:0;
+}
+@-webkit-keyframes oscillation-ball-red	{
+  from	{
+    -webkit-transform:rotate(2deg);
+  }
+  to {
+    -webkit-transform:rotate(-2deg);
+  }
+}
+
+@-moz-keyframes oscillation-ball-red {
+  from {
+    -moz-transform:rotate(2deg);
+  }
+  to {
+    -moz-transform:rotate(-2deg);
+  }
+}
+
+.oscillate-ball-red {
+  -webkit-transform-origin:50% -40px;  
+  -moz-transform-origin:50% -40px;   
+  -webkit-animation: oscillation-ball-red 1s ease-in-out infinite alternate;
+  -moz-animation: oscillation-ball-red 1s ease-in-out infinite alternate;
+  z-index:0;
 }
