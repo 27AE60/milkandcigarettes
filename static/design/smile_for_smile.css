@@ -25,41 +25,73 @@ body {
     0% { background-position: 0px 0px; }
     100% { background-position: 500px 1000px; }
 }
+
+.charity-box-list {
+  padding: 0;
+  width:95%;
+  margin:auto;
+  margin-bottom:40px;
+}
+
 .charity-box {
   border: 1px solid #eeeeee !important;
   border-radius: 3px;
   width: 100%;
-  margin-bottom:40px;
   background-color: rgba(255,255,255,0.46);
-  text-align: center;
+  margin: 20px auto !important;
+  display:inline-table;
+}
+
+.charity-box:last-child {
+  margin-bottom: 40px;
 }
 
 @media screen and (min-width:600px) {
+  .charity-box-list {
+    width: 80%;
+  }
+
   .charity-box {
-    width:70%;
+    width: 94%;
     margin: auto;
-    margin-bottom:40px;
+  }
+
+  .charity-box h3 {
+    padding: 20px 40px;
+  }
+
+  .charity-box .address {
+    padding: 0px 40px;
+  }
+
+  .charity-box .phone {
+    padding:0px 40px;
+    padding-bottom:20px;
   }
 }
 
 .charity-box h3{
-  font-weight:100;
-  font-style:italic;
-}
-h3 {
-  font-size:2em;
+  font-weight:600;
+  font-size:1.3em;
   margin: 0px;
-  padding: 7px;
+  padding:10px 20px;
 }
 
-.charity-address {
-  font-size:1.1em;
-  padding: 5px 10px;
+.charity-box hr {
+  border: 0;
+  border-bottom:1px solid #eeeeee;
 }
-.charity-phone {
+
+.charity-box .address {
+  font-size:1em;
+  margin-bottom:11px;
+  padding:0px 20px;
+}
+.charity-box .phone {
   margin: 0px;
-  margin-top: -43px;
-  padding-bottom: 14px;
+  padding:0px 20px;
+  padding-bottom:10px;
+  font-style: italic;
 }
 
 .star-medium {
@@ -246,6 +278,6 @@ h3 {
 
 .message {
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-style: italic;
 }
