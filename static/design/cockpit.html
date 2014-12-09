@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes"/>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="article.css">
+<title>Learning to Fly</title>
+</head>
+
+<body>
+<a href="index.html">
+<img src="milk-and-cigarettes-logo.png" class="logo">
+</a>
+<p class="date">9th December 2014</p>
+<div class="wrapper">
+  <h1>Learning to Fly</h1>
+  <blockquote>Wings to fly high, our first product used in our daily life!</blockquote>
+
+  <p>We believe in the concept, 'Don't Repeat Yourself'. But we realized our day starts with opening related files, services and servers for any job. Then we realized, we did repeat ourself till now. So we came up with a small hack which sets an environment to perform any predefine job with just one single command. Thats how we introduced cockpit.</p>
+  <pre>
+	<code>
+    $ cockpit.sh load work
+    </code>
+  </pre>
+  <img class="load-cockpit" src="Load_Cockpit.png">
+  
+  <p>Cockpit is a workspace with multiple tabs running various commands to work efficiently. All we need to do is configure cockpit for personal, office or any other work. Config file provided us the flexibility to create/modify workspaces. Now we can work on multiple workspace without overlapping.</p>
+
+
+  <h3>Sample configuration file for creating cockpits</h3>
+  <pre>
+    <code>
+    Office=(
+      'Server:cd ~/Documents/office/bin;./office'
+      'Express:cd ~/Documents/office; supervisor index.js'
+      'Vim:vim ~/Documents/office/template/about.jade'
+      'Cmd:clear'
+      'Mysql:mysql -u root -p'
+    )
+
+    Personal=(
+      'Server:cd ~/Documents/player/; gulp serve'
+      'Vim:cd ~/Documents/player/; vim player.html'
+      'Cmd: clear'
+    )
+	</code>
+  </pre>
+
+  <p> But, then, we started to load multiple cockpits and closing each tab one by one was pain in the a**. So we came up with exit functionality to exit all the workspaces. Moreover, we could even exit specific workspace, even specific tab within a workspace.</p>
+  <pre>
+    <code>
+	# To exit all workspaces
+	$ cockpit.sh exit All
+
+	# To exit specific workspaces
+	$ cockpit.sh exit Office
+
+	# To exit single tab
+	$ cockpit.sh exit Office Express
+    </code>
+  </pre>
+
+  <p>One more thing, cockpit was modular enough that it was not only limited to terminals. We realized cockpit can execute any command in terminal. So why just stick with command line interface when can even load GUI application with cockpit. We added few commands to open browser with multiple tabs, Office Writer or PDF viewer or any GUI applications in config file. </p>
+
+  <pre>
+    <code>
+    $ cat ~/.cockpit
+    Office=(
+      'Browser:firefox www.google.com www.milkandcigarettes.so'
+      'Folders:nautilus /home/sajan/Desktop'
+      'Documents:xdg-open /home/sajan/Desktop/cockpit.odt'
+    )
+    </code>
+  </pre>
+
+  <p>Now, I have a peaceful life at work, home or everywhere. The main take aways from this is, a simple hack which helps you in your daily life and that which you would be using everyday, an awesome way to learn and create something for yourself. </p>
+
+ <p>Please fell free to fork and contribute <a href="https://github.com/27AE60/cockpit">Github Repo</a></p>
+ <p>Install and enjoy cockpit Cheers! <a href="https://github.com/27AE60/cockpit/raw/master/build/cockpit_1.0-1.deb">Download</a></p>
+</div>
+
+<h3 class="ghome-signature">~(o.o)~</h3>
+<p class="author"><a href="killer.html" class="about">killer</a></p>
+<h2 class="so">.so</h2>
+
+<div class="footer">
+  <div class="pageline">
+    <div class="pageno">23</div>
+  </div>
+  <p class="poweredby">Powered By
+  <a class="R27AE60" href="https://github.com/27ae60">27AE60</a></p>
+</div>
+
+</body>
+</html>
