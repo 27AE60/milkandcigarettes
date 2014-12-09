@@ -96,7 +96,14 @@ blockquote:before,blockquote:after{
   /* prefers normal */
   font-style: normal;
 }
-
+.launde-signature{
+	text-align: center;
+	font-size: 33px;
+	font-weight: 100;
+	font-style: italic;
+	margin: 0px;
+	margin-top: 40px;
+}
 .author{
 	text-align: center;
 	font-size: 50px;
