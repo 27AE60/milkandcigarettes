@@ -39,6 +39,10 @@ blockquote:before,blockquote:after{
 	content: "\"";
 }
 
+a, a:visited, a:hover, a:active {
+  color: inherit;
+}
+
 .date {
   text-transform: capitalize;
   text-align: center;
@@ -63,6 +67,10 @@ blockquote:before,blockquote:after{
 	margin: auto;
 	width: 96%;
 	padding: 2%;
+}
+
+.wrapper .nodecoration {
+  text-decoration: none;
 }
 
 @media only screen and (min-width: 768px){
