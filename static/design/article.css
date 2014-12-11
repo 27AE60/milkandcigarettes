@@ -43,6 +43,9 @@ a, a:visited, a:hover, a:active {
   color: inherit;
 }
 
+.pull--left { float: left; }
+.pull--right { float: right; }
+
 .date {
   text-transform: capitalize;
   text-align: center;
@@ -67,6 +70,19 @@ a, a:visited, a:hover, a:active {
 	margin: auto;
 	width: 96%;
 	padding: 2%;
+}
+
+.page-navigation {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-color: #E1E1E1;
+  padding: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.page-navigation a {
+  margin: 0px 20px;
 }
 
 .wrapper .nodecoration {
@@ -123,7 +139,7 @@ a, a:visited, a:hover, a:active {
 	font-style: italic;
 	margin: 0px;
 	line-height: 0.7;
-	margin-bottom: 50px;
+	margin-bottom: 110px;
 }
 .about{
 	text-decoration: none;
@@ -254,13 +270,9 @@ del{
   margin: auto;
   min-width: 25px;
 }
+
 .four-not-four {
   text-align: center;
-}
-disqusthread{
-  text-align: center;
-  padding-right: 150px;
-  padding-left: 150px;
 }
 
 .dominos-404 {
