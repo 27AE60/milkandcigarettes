@@ -3,10 +3,10 @@ body {
     background-color: #fff;
     background-image: url('snow-flakes.png');
     background-size:250px 250px;
-    -webkit-animation: snow 20s linear infinite;
-    -moz-animation: snow 20s linear infinite;
-    -ms-animation: snow 20s linear infinite;
-    animation: snow 20s linear infinite;
+    /* -webkit-animation: snow 20s linear infinite; */
+    /* -moz-animation: snow 20s linear infinite; */
+    /* -ms-animation: snow 20s linear infinite; */
+    /* animation: snow 20s linear infinite; */
 }
 
 @-webkit-keyframes snow {
