@@ -1,11 +1,15 @@
 body{
-	padding:0;
+	padding:2% 4%;
 	margin:0;
 	border: 0;
  	font-family: georgia, sans-serif;
  	font-size: 20px;
  	line-height: 1.7;
  	text-align: left;
+}
+
+@media only screen and (min-width: 768px) {
+  body { padding:0; }
 }
 
 h1{
@@ -35,8 +39,16 @@ blockquote{
 	border-top: 1px solid;
 	border-bottom: 1px solid;
 	border-color: #E1E1E1;
-	margin-bottom: 40px;
+  margin: auto;
+  margin-bottom: 40px;
 }
+
+@media only screen and (min-width: 768px) {
+  blockquote {
+    width: 70%;
+  }
+}
+
 blockquote:before,blockquote:after{
 	content: "\"";
 }
@@ -53,6 +65,11 @@ a, a:visited, a:hover, a:active {
   margin-top: 70px;
 }
 .date:after { content : ","; }
+
+.logo-wrapper {
+  display: table;
+  margin: auto;
+}
 
 .logo{
 	width: 128px;
