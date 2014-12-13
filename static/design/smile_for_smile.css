@@ -71,7 +71,7 @@ body {
 }
 
 .charity-box h3{
-  font-weight:600;
+  font-weight:100;
   font-size:1.3em;
   margin: 0px;
   padding:10px 20px;
@@ -92,6 +92,11 @@ body {
   padding:0px 20px;
   padding-bottom:10px;
   font-style: italic;
+}
+
+.star-medium, .star-small, .angel, .ball-green, .ball-red {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .star-medium {
