@@ -431,3 +431,81 @@ disqusthread{
 .year-block:after {
   content:'' !important;
 }
+
+
+/**
+ * Philatelie Oiseaux Styles 
+ */
+.philatelie__stamps {
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.philatelie__stamps img {
+  margin: 0 auto !important;
+}
+
+.philatelie__stamps td {
+  width: 100%;
+  display: block;
+}
+
+@media only screen and (min-width: 480px) {
+  .philatelie__stamps td {
+    width:48%;
+    display:inline-table;
+  }
+}
+
+@media only screen and (min-width: 786px) {
+  .philatelie__stamps td{
+    width: auto;
+    display: inline-table;
+  }
+
+  .philatelie__stamps img {
+    max-width: 150px;
+  }
+}
+
+.philatelie__info-wrapper {
+  width: 100%;
+  height: auto;
+  margin-top: 50px;
+}
+
+.philatelie__info-wrapper-logo {
+  width: 100%;
+  padding: 0px 0px 20px 0px;
+  display: table;
+  text-align: center;
+}
+
+.philatelie__info-wrapper-logo img {
+  max-width: 128px;
+  margin: 0 auto !important;
+}
+
+.philatelie__info-wrapper-text {
+  width: 100%;
+  display: table;
+}
+
+@media only screen and (min-width: 650px) {
+  .philatelie__info-wrapper {
+    border-top: 1px solid #eeeeee;
+  }
+
+  .philatelie__info-wrapper-logo {
+    width: 20%;
+    padding: 0px 20px 0px 0px;
+    display: inline-table;
+  }
+  .philatelie__info-wrapper-text {
+    width: 74% !important;
+    padding: 0px 0px 0px 20px;
+    display: inline-table;
+    border-left: 1px solid #eeeeee;
+  }
+}
+
