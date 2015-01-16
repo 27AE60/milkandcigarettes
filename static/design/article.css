@@ -498,12 +498,12 @@ disqusthread{
 
   .philatelie__info-wrapper-logo {
     width: 20%;
-    padding: 0px 20px 0px 0px;
+    padding: 0px 3% 0px 0px;
     display: inline-table;
   }
   .philatelie__info-wrapper-text {
     width: 74% !important;
-    padding: 0px 0px 0px 20px;
+    padding: 0px 0px 0px 3%;
     display: inline-table;
     border-left: 1px solid #eeeeee;
   }
