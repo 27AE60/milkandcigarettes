@@ -404,3 +404,30 @@ disqusthread{
 .load-cockpit {
   margin-bottom: 75px;
 }
+
+.year-block-image {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  margin: 0;
+  margin-bottom: 8px;
+  /* border: 1px solid; */
+  /* border-radius: 30px; */
+  padding: 5px;
+}
+
+.year-block-text {
+  display: block;
+  font-size: 22px;
+  margin: 0;
+}
+
+.year-block {
+  list-style: none;
+  text-align: center;
+  padding:50px 0px 30px 0px;
+}
+
+.year-block:after {
+  content:'' !important;
+}
