@@ -245,6 +245,7 @@ del{
   font-style: italic;
   text-decoration: none;
   color: #000000;
+  outline: 0;
 }
 
 .table-of-contents .table-of-contents-page-no {
