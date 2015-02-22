@@ -43,6 +43,17 @@ blockquote{
   margin-bottom: 40px;
 }
 
+audio {
+  width:100%;
+  margin: 20px 0;
+}
+
+@media only screen and (min-width: 768px) {
+  audio {
+    width: 60%;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   blockquote {
     width: 70%;
