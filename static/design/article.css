@@ -31,6 +31,13 @@ img{
   margin-top: 40px;
   margin-bottom:60px;
 }
+
+.image-reset  {
+  width: auto;
+  margin: 40px auto 60px auto;
+  display: block;
+}
+
 blockquote{
 	font-style: italic;
 	font-size: 28px;
