@@ -32,12 +32,6 @@ img{
   margin-bottom:60px;
 }
 
-.image-reset  {
-  width: auto;
-  margin: 40px auto 60px auto;
-  display: block;
-}
-
 blockquote{
 	font-style: italic;
 	font-size: 28px;
@@ -451,6 +445,38 @@ disqusthread{
   content:'' !important;
 }
 
+/**
+ * Duane Dalton article special
+ */
+.stamp-design__wrapper {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.stamp-design__column {
+  width: 100%;
+  margin-right: 20px;
+  float: left;
+}
+
+.stamp-design__image  {
+  width: 80%;
+  margin: 80px auto;
+  display: block;
+}
+
+.stamp-design__image--small  {
+  width: 50%;
+}
+
+@media only screen and (min-width: 480px) {
+  .stamp-design__image { width: 60%; }
+}
+@media only screen and (min-width: 500px) {
+  .stamp-design__column { width: 45%; }
+  .stamp-design__image { width: 80%; }
+}
 
 /**
  * Philatelie Oiseaux Styles 
