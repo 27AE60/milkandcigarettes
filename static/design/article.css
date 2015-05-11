@@ -467,7 +467,7 @@ disqusthread{
 }
 
 .stamp-design__image--small  {
-  width: 50%;
+  width: 50% !important;
 }
 
 @media only screen and (min-width: 480px) {
